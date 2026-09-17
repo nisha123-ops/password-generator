@@ -1,0 +1,433 @@
+/* Universal selector: Page ke har ek element par Arial font aur border-box sizing apply karta hai */
+* {
+    font-family: Arial, sans-serif; /* Poore page ka font style set karta hai */
+    box-sizing: border-box; /* Padding aur border ko element ki total width ke andar include karta hai */
+}
+
+/* Page background ka styling */
+body {
+    background: #f3f4f6; /* Page ka background light gray set karta hai */
+}
+
+/* Main password generator app card ka container */
+.app {
+    max-width: 500px; /* Card ki maximum width set karta hai */
+    margin: 50px auto; /* Card ko screen par upar-neoche se space deta hai aur center me align karta hai */
+    padding: 30px; /* Card ke andar se spacing (padding) deta hai */
+    border-radius: 16px; /* Card ke chaaro corners ko round karta hai */
+    border: 1px solid #e5e7eb; /* Soft light gray border deta hai */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Card ke peeche halki drop shadow deta hai */
+    background-color: white; /* Card ka background color white rakhta hai */
+    position: relative; /* Inside elements (jaise absolute items) ke liye reference position ka kaam karta hai */
+}
+
+/* Header layout container (jisme Title aur 3-dot Menu hai) */
+.app-header {
+    display: flex; /* Title aur menu button ko ek hi line me side-by-side laata hai */
+    justify-content: space-between; /* Title ko left aur Menu ko right corner par push karta hai */
+    align-items: center; /* Title aur Menu button ko vertically center align karta hai */
+    position: relative; /* Floating dropdown menu ko header ke respect me align rakhne ke liye */
+    margin-bottom: 25px; /* Header ke neeche gap/margin deta hai */
+}
+
+/* Main app ka main title heading (h1) */
+.app h1 {
+    font-size: 24px; /* Title ki text size set karta hai */
+    margin: 0; /* Browser ke default heading margin ko hatata hai */
+}
+
+/* 3-dot menu button ka wrapper container */
+.menu-container {
+    position: relative; /* Dropdown popup box ko button ke neeche align rakhne ke liye reference parent */
+}
+
+/* 3-dot menu icon wala button */
+.icon-btn {
+    background: #f0f0f0; /* Button ka light gray background color */
+    border: none; /* Default button border ko remove karta hai */
+    border-radius: 10px; /* Button ke corners round karta hai */
+    padding: 8px 12px; /* Button ke andar ki space/padding */
+    cursor: pointer; /* Mouse hover par hand icon dikhata hai */
+    display: flex; /* Button ke andar wale icon ko center karne ke liye flexbox */
+    align-items: center; /* Vertical center alignment */
+    justify-content: center; /* Horizontal center alignment */
+    transition: background 0.2s ease; /* Hover background change ko smooth banata hai */
+}
+
+/* 3-dot button par mouse hover karne par */
+.icon-btn:hover {
+    background: #e2e2e2; /* Hover par gray color ko thoda dark kar deta hai */
+}
+
+/* Floating Dropdown popup menu card */
+.dropdown-menu {
+    display: none; /* By default hidden rahega (JavaScript se show hota hai) */
+    position: absolute; /* Floating menu banata hai jo content ke upar float karega */
+    top: calc(100% + 8px); /* Button ke thik neeche 8px ke gap par position karta hai */
+    right: 0; /* Button ke right edge se align karta hai */
+    width: 210px; /* Dropdown menu box ki fixed width */
+    background: #ffffff; /* White background color */
+    border-radius: 16px; /* Smooth rounded corners */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* Soft floating drop shadow */
+    padding: 8px; /* Dropdown card ke andar ki space */
+    z-index: 1000; /* Menu ko baki saare elements ke upar layered rakhta hai */
+    border: 1px solid rgba(0, 0, 0, 0.05); /* Soft border line */
+}
+
+/* JavaScript jab 'show' class add karega tab dropdown open hoga */
+.dropdown-menu.show {
+    display: flex; /* Menu ko visible kar deta hai */
+    flex-direction: column; /* Menu items ko ek ke neeche ek (vertically) arrange karta hai */
+}
+
+/* Dropdown menu ke andar ka har ek item/button */
+.dropdown-item {
+    display: flex; /* Icon aur text ko ek line me side-by-side laata hai */
+    align-items: center; /* Icon aur text ko vertically center align karta hai */
+    gap: 12px; /* Icon aur text ke beech ka distance */
+    width: 100%; /* Full width span karta hai */
+    padding: 10px 12px; /* Click area/padding */
+    border: none; /* Default button borders remove karta hai */
+    background: transparent; /* Transparent background */
+    border-radius: 8px; /* Rounded corners */
+    color: #333; /* Dark gray text color */
+    font-size: 14px; /* Text size */
+    font-weight: 500; /* Medium font weight */
+    cursor: pointer; /* Pointer cursor on hover */
+    text-align: left; /* Text ko left align rakhta hai */
+    transition: background 0.15s ease; /* Smooth background transition */
+}
+
+/* Dropdown item ke andar ke icon ka size aur color */
+.dropdown-item i {
+    width: 18px; /* Icon width */
+    height: 18px; /* Icon height */
+    color: #555; /* Icon ka default dark gray color */
+}
+
+/* Normal dropdown item par mouse hover karne par */
+.dropdown-item:hover {
+    background: #f5f5f5; /* Light gray highlight color */
+}
+
+/* Red danger action button (jaise Delete) */
+.dropdown-item.danger {
+    color: #ef4444; /* Red text color */
+}
+
+/* Red danger action item ka icon color */
+.dropdown-item.danger i {
+    color: #ef4444; /* Red icon color */
+}
+
+/* Red danger item par mouse hover karne par */
+.dropdown-item.danger:hover {
+    background: #fef2f2; /* Light red background highlight */
+}
+
+/* Dropdown menu me section separate karne wali line */
+.dropdown-divider {
+    height: 1px; /* Line ki thickness */
+    background-color: #e5e7eb; /* Line ka gray color */
+    margin: 6px 0; /* Top aur bottom se vertical spacing */
+}
+
+/* Password input box aur Copy button ka row layout */
+.password-box {
+    display: flex; /* Field aur Copy button ko side-by-side laata hai */
+    align-items: center; /* Vertically align karta hai */
+    gap: 8px; /* Field aur button ke beech ka space */
+    margin-top: 20px; /* Top se margin spacing */
+}
+
+/* Password field aur Eye toggle icon ka parent wrapper */
+.password-input {
+    position: relative; /* Inside Eye button ko absolute position karne ke liye reference */
+    flex: 1; /* Space ke hisaab se expand hone deta hai */
+    width: 100%; /* Full width */
+}
+
+/* Generated password text field styling */
+.password-input input {
+    width: 100%; /* Full width container space leta hai */
+    padding: 12px; /* Typing area ke andar ki padding */
+    padding-right: 45px; /* Text ko eye icon ke neeche chupne se rokta hai */
+    border: 1px solid #ccc; /* Border gray color */
+    border-radius: 8px; /* Rounded corners */
+    font-size: 16px; /* Text font size */
+    outline: none; /* Focus karne par blue outline remove karta hai */
+    background-color: #f9fafb; /* Light tinted background */
+}
+
+/* Eye icon toggle button (show/hide password) */
+#togglePassword {
+    border: none; /* Border remove karta hai */
+    background: transparent; /* Transparent background */
+    cursor: pointer; /* Hand pointer cursor */
+    padding: 8px; /* Padding space */
+    position: absolute; /* Input box ke andar right side align karta hai */
+    right: 10px; /* Right edge se 10px ka gap */
+    top: 50%; /* Top se 50% down position */
+    transform: translateY(-50%); /* Perfect vertical center align karta hai */
+}
+
+/* Eye SVG icon ka size */
+#togglePassword svg {
+    width: 20px; /* Width */
+    height: 20px; /* Height */
+}
+
+/* Eye icon par hover state */
+#togglePassword:hover {
+    background-color: #f3f4f6; /* Hover highlight gray background */
+    border-radius: 6px; /* Smooth rounded shape */
+}
+
+/* Edge browser ka default password eye icon hide karta hai */
+input[type="password"]::-ms-reveal {
+    display: none; /* Browser default reveal icon ko remove karta hai */
+}
+
+/* Copy password wala main button */
+#copyBtn {
+    background-color: #e5e7eb; /* Gray background */
+    color: #111827; /* Dark text color */
+    padding: 12px 18px; /* Inner button padding */
+    border: none; /* Removes border */
+    border-radius: 8px; /* Rounded corners */
+    cursor: pointer; /* Hand pointer cursor */
+    font-size: 14px; /* Text size */
+    font-weight: 500; /* Medium font weight */
+}
+
+/* Copy button par hover state */
+#copyBtn:hover {
+    background-color: #d1d5db; /* Darker gray background on hover */
+}
+
+/* Password length adjust karne wala section wrapper */
+.length-section {
+    margin-top: 20px; /* Section ke upar margin space */
+}
+
+/* Length section label styling */
+.length-section label {
+    display: block; /* Label ko new line par laata hai */
+    margin-bottom: 8px; /* Bottom space */
+    font-size: 16px; /* Text size */
+    font-weight: 500; /* Medium weight */
+}
+
+/* Length ka number box input */
+.length-section input {
+    width: 100%; /* Full width */
+    padding: 12px; /* Inner padding */
+    border: 1px solid #ccc; /* Gray border */
+    border-radius: 8px; /* Rounded corners */
+    font-size: 16px; /* Font size */
+    margin-bottom: 15px; /* Bottom spacing */
+}
+
+/* Length input active focus state */
+.length-section input:focus {
+    outline: none; /* Blue outline remove karta hai */
+    border-color: #ccc; /* Border color neutral rakhta hai */
+}
+
+/* Checkbox options box card container */
+.option {
+    margin-top: 25px; /* Top spacing */
+    padding: 15px; /* Card inner padding */
+    border: 1px solid #e5e7eb; /* Border line */
+    border-radius: 10px; /* Rounded corners */
+    background-color: #f9fafb; /* Light tint background */
+}
+
+/* Options container box heading (h2) */
+.option h2 {
+    margin-bottom: 15px; /* Bottom spacing */
+    font-size: 20px; /* Title font size */
+    font-weight: 600; /* Semi-bold */
+}
+
+/* Har ek checkbox row label layout */
+.option label {
+    display: flex; /* Checkbox aur text ko ek line me laata hai */
+    align-items: center; /* Vertically center align karta hai */
+    gap: 10px; /* Checkbox aur text ke beech spacing */
+    margin-bottom: 12px; /* Spacing between options */
+    font-size: 16px; /* Text size */
+    cursor: pointer; /* Hand pointer on hover */
+}
+
+/* Checkbox row hover effect */
+.option label:hover {
+    background-color: #f3f4f6; /* Hover gray background highlight */
+    border-radius: 6px; /* Rounded highlight corners */
+}
+
+/* Checkbox size setting */
+.option input[type="checkbox"] {
+    width: 16px; /* Width */
+    height: 16px; /* Height */
+    cursor: pointer; /* Hand pointer */
+}
+
+/* Generate Password main action button */
+#generateBtn {
+    width: 100%; /* Card ki full width span karta hai */
+    padding: 12px; /* Inner padding space */
+    border: none; /* Border remove karta hai */
+    border-radius: 8px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor */
+    font-size: 16px; /* Text size */
+    font-weight: 600; /* Bold font text */
+    margin-top: 20px; /* Top margin */
+    background-color: #2563eb; /* Blue color */
+    color: white; /* White text color */
+}
+
+/* Generate button hover effect */
+#generateBtn:hover {
+    background-color: #1d4ed8; /* Darker blue background */
+    transform: translateY(-1px); /* Hover par subtle lift effect deta hai */
+}
+
+/* History side/bottom panel wrapper block 1 */
+#historyPanel {
+    display: none; /* Default hidden status (JavaScript se show hota hai) */
+    margin-top: 20px; /* Panel ke upar spacing */
+    padding: 15px; /* Top inner padding */
+    border-top: 2px dashed #e527eb; /* Top dashed separator line */
+    position: relative; /* Inside items relative reference container */
+}
+
+/* History Panel layout block 2 (bottom panel styling) */
+#historyPanel {
+    display: none; /* Hidden state by default */
+    margin-top: 20px; /* Top spacing */
+    padding-top: 15px; /* Inside top padding */
+    border-top: 2px dashed #e5e7eb; /* Separator line from main app */
+    position: relative; /* Container reference */
+}
+
+/* History header section layout holding title and 'X' close button */
+.history-header {
+    display: flex; /* Flex alignment */
+    justify-content: space-between; /* Title left me aur Close button right me push karta hai */
+    align-items: center; /* Vertically center alignment */
+    margin-bottom: 15px; /* Bottom margin */
+}
+
+/* Close ('X') button layout in right side corner */
+#closeHistoryBtn {
+    background: transparent; /* Transparent background */
+    border: none; /* Border remove karta hai */
+    font-size: 22px; /* Font size for 'X' icon */
+    font-weight: bold; /* Bold font text */
+    color: #6b7280; /* Gray color */
+    cursor: pointer; /* Pointer cursor on hover */
+    padding: 4px 8px; /* Inner click padding */
+    border-radius: 6px; /* Smooth corners */
+}
+
+/* Close button hover state */
+#closeHistoryBtn:hover {
+    background-color: #f3f4f6; /* Light gray background on hover */
+    color: #111827; /* Dark text color on hover */
+}
+
+/* History item row container containing checkbox and saved password text */
+.history-item {
+    display: flex; /* Checkbox aur password text ko side-by-side laata hai */
+    align-items: center; /* Vertical centering */
+    gap: 10px; /* Distance between checkbox and text */
+    padding: 10px; /* Inner row padding */
+    margin: 8px 0; /* Vertical space between rows */
+    border: 1px solid #e5e7eb; /* Gray border line */
+    border-radius: 6px; /* Rounded corners */
+    background-color: #f9fafb; /* Light tinted background */
+}
+
+/* History item checkbox styling */
+.history-item input[type="checkbox"] {
+    width: 16px; /* Width */
+    height: 16px; /* Height */
+    cursor: pointer; /* Pointer cursor */
+}
+
+/* History action buttons wrapper container */
+.history-actions {
+    display: flex; /* Flexbox alignment */
+    gap: 10px; /* Buttons ke beech ka gap */
+    margin-top: 15px; /* Top spacing */
+}
+
+/* Delete selected items button styling */
+#deleteSelectedBtn {
+    background-color: #ef4444; /* Red background color */
+    color: white; /* White text color */
+    border: none; /* Removes border */
+    padding: 8px 14px; /* Button inner padding */
+    border-radius: 6px; /* Rounded corners */
+    cursor: pointer; /* Hand pointer */
+}
+
+/* Clear all history button styling */
+#clearAllHistoryBtn {
+    background-color: #dc2626; /* Dark red background color */
+    color: white; /* White text color */
+    border: none; /* Removes border */
+    padding: 8px 14px; /* Inner padding space */
+    border-radius: 6px; /* Rounded corners */
+    cursor: pointer; /* Hand pointer */
+}
+
+#cancelSelectionBtn{
+    background-color: #6b7280; /* Gray color*/
+    color: white; /* Text color*/
+    border: none; /* Border */
+    padding: 8px 14px; /* Inner Padding*/
+    border-radius: 6px; /* Corners*/
+    cursor: pointer; /* Pointer */
+    display: inline-block; /* Keep button permanently visible */
+}
+
+
+/* Extra override rule for history item box list */
+.history-item {
+    padding: 10px; /* Inner padding */
+    margin: 8px 0; /* Vertical margin between list items */
+    border: 1px solid #ccc; /* Border gray color */
+    border-radius: 6px; /* Rounded corners */
+}
+
+/* Smooth transitions for interactive elements */
+button,
+input {
+    transition: all 0.2s ease; /* Hover state changes ko smooth animation deta hai */
+}
+
+/* Mobile responsive screen adjustments (screen width <= 600px) */
+@media (max-width: 600px) {
+    .app {
+        margin: 20px; /* Mobile screens par outer card margin kam karta hai */
+        padding: 20px; /* Inside padding space kam karta hai */
+    }
+
+    .app h1 {
+        font-size: 20px; /* Mobile screens par title font size chota karta hai */
+    }
+
+    .password-box {
+        flex-direction: column; /* Mobile par input aur copy button ko ek ke neeche ek stack karta hai */
+    }
+
+    .password-input {
+        width: 100%; /* Input field ko full width span karta hai */
+    }
+
+    #copyBtn {
+        width: 100%; /* Mobile screens par Copy button ko full width karta hai */
+    }
+}

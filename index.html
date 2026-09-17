@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<!-- Tells the browser this document is written in HTML5 -->
+<html lang="en">
+<head>
+    <!-- Sets character encoding so text displays correctly -->
+    <meta charset="UTF-8">
+    
+    <!-- Makes the webpage look right on mobile screens -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Sets the tab title of the webpage -->
+    <title>Smart Password Generator</title>
+
+    <!-- Connects the CSS file for design and layout -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Loads the Lucide icon library -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    
+    <!-- Main white card wrapper that holds the whole app -->
+    <div class="app">
+        
+        <!-- Header container for the main title and 3-dot button -->
+        <div class="app-header">
+            <!-- Displays the app title -->
+            <h1>Smart Password Generator</h1>
+
+            <!-- Relative container to keep the dropdown aligned with the 3-dot button -->
+            <div class="menu-container">
+                <!-- Button with 3 dots that toggles the dropdown menu -->
+                <button id="menuBtn" class="icon-btn" aria-label="More Options">
+                    <!-- 3-dot horizontal icon -->
+                    <i data-lucide="more-horizontal"></i>
+                </button>
+
+                <!-- Floating menu box (hidden by default) -->
+                <div id="menu" class="dropdown-menu">
+                    <!-- Button to open the password history panel -->
+                    <button id="historyBtn" class="dropdown-item">
+                        <i data-lucide="history"></i>
+                        <span>History</span>
+                    </button>
+
+                    <!-- Button to share options
+                    <button class="dropdown-item">
+                        <i data-lucide="share-2"></i>
+                        <span>Share</span>
+                    </button> -->
+
+                    <!-- Thin gray horizontal divider line -->
+                    <div class="dropdown-divider"></div>
+
+                    <!-- Red button to clear saved history -->
+                    <button class="dropdown-item danger" id="clearHistoryBtn">
+                        <i data-lucide="trash-2"></i>
+                        <span>Delete History</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Row holding the password display input and copy button -->
+        <div class="password-box">
+            <!-- Wrapper for input field and eye icon -->
+            <div class="password-input">
+                <!-- Input field that shows the generated password -->
+                <input type="password" id="password" readonly>
+                
+                <!-- Button to show or hide the password characters -->
+                <button id="togglePassword" type="button" aria-label="Toggle password visibility">
+                    <i data-lucide="eye"></i>
+                </button>
+            </div>
+            
+            <!-- Button to copy password to clipboard -->
+            <button id="copyBtn" type="button">Copy</button>
+        </div>
+
+        <!-- Text line showing if password is Weak, Medium, or Strong -->
+        <p id="strengthText"></p>
+
+        <!-- Container for password length setting -->
+        <div class="length-section">
+            <!-- Label text for the length input -->
+            <label for="length">Password Length</label>
+            <!-- Number input box to choose password length -->
+            <input type="number" id="length" min="1" max="50">
+        </div>
+
+        <!-- Box containing character option checkboxes -->
+        <div class="option">
+            <!-- Section title -->
+            <h2>Password Options</h2>
+            
+            <!-- Uppercase option checkbox and label -->
+            <label>
+                <input type="checkbox" id="uppercase">
+                Uppercase Letters
+            </label>
+
+            <!-- Lowercase option checkbox and label -->
+            <label>
+                <input type="checkbox" id="lowercase">
+                Lowercase Letters
+            </label>
+
+            <!-- Numbers option checkbox and label -->
+            <label>
+                <input type="checkbox" id="numbers">
+                Numbers
+            </label>
+
+            <!-- Symbols option checkbox and label -->
+            <label>
+                <input type="checkbox" id="symbols">
+                Symbols
+            </label>
+        </div>
+
+        <!-- Main blue button to trigger password generation -->
+        <button id="generateBtn">Generate Password</button>
+ 
+        <!-- Side/Popup panel showing previously generated passwords -->
+        <div id="historyPanel">
+            <!-- Header for the history panel -->
+            <div class="history-header">
+                <h2>History</h2>
+                <!-- Button to close history panel -->
+                <button id="closeHistoryBtn" aria-label="Close history">&times;</button>
+            </div>
+
+            
+            <!-- Subheading for recent items -->
+            <h3>Recent Passwords</h3>
+
+            <!-- Empty box where JavaScript inserts past passwords -->
+            <div id="historyList"></div>
+
+            <!-- Extra action buttons inside history -->
+            <div class="history-actions">
+                <!-- Delete selected history items button -->
+                <button id="deleteSelectedBtn" style="display: none;">Delete</button>
+                <!-- Cancel selection button -->
+                <button id="cancelSelectionBtn" style="display: none;">Cancel</button>
+                <!-- Clear all history at once -->
+                 <button id="clearAllHistoryBtn">Clear History</button>
+            </div>
+        </div>
+    </div>
+
+<!-- Connects your custom JavaScript logic -->
+<script src="script.js"></script>
+
+<!-- Script block that renders Lucide icons into actual SVGs -->
+<script>
+    lucide.createIcons();
+</script>
+
+</body>
+</html>
