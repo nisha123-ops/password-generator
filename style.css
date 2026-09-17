@@ -6,8 +6,25 @@
 
 /* Page background ka styling */
 body {
-    background: #f3f4f6; /* Page ka background light gray set karta hai */
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: cneter;
+    align-items: enter;
+    font-family: 'Poppins', sans-serif;
+    /*Gradient Color*/
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
 }
+
+/* Background Animation KeyFrames */
+@keyframes gradientBG{
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50% }
+    100% { background-position: 0% 50% }
+}
+
 
 /* Main password generator app card ka container */
 .app {
@@ -429,5 +446,33 @@ input {
 
     #copyBtn {
         width: 100%; /* Mobile screens par Copy button ko full width karta hai */
+    }
+
+}
+
+/* Make mobile app feel like a real native app */
+.body{
+    user-select: none; /* Prevents unwanted text highlight on long press */
+    -webkit-tap-highlight-color: transparent; /* Removes blue tap box on mobile click */
+    touch-action: manipulation; /* Faster touch responses */
+}
+
+/* Make app fill mobile screen cleanly */
+@media (max-width: 600px){
+    body{
+        margin: 0;
+        padding: 0;
+        background-color: #ffffff; /* Matches app background */
+
+    }
+
+    .app{
+        margin: 0;
+        width: 100vw;
+        min-height: 100vh;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 20px 16px;
     }
 }
